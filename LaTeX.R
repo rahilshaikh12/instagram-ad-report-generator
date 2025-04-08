@@ -14,6 +14,19 @@ latex_code <- "
 \\usepackage{xcolor}
 \\usepackage{titlesec}
 
+% Define custom colors
+\\definecolor{deepindigo}{HTML}{4B0082}
+\\definecolor{red}{HTML}{E41A1C}
+\\definecolor{blue}{HTML}{377EB8}
+\\definecolor{gray}{HTML}{666666}
+
+% Customize header and footer
+\\pagestyle{fancy}
+\\fancyhf{}
+\\lhead{\\textcolor{gray}{Advertiser Dashboard}}
+\\rhead{\\textcolor{gray}{Data Analysis}}
+\\cfoot{\\textcolor{gray}{\\thepage}}
+
 
 
 "
