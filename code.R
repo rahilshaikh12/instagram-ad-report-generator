@@ -230,6 +230,87 @@ total_with_info <- sum(interaction_of_personal_info$count)
 interacted_pct <- interacted_count / total_with_info * 100
 not_interacted_pct <- not_interacted_count / total_with_info * 100
 
+# graph 4: no. of companies with personal info vs how many of them we 
+# interacted with before
+p4 <- ggplot(interaction_of_personal_info,
+             aes(
+               ymax = ymax,
+               ymin = ymin,
+               xmax = 4,
+               xmin = 3,
+               fill = label
+             )) +
+  geom_rect() +
+  coord_polar(theta = "y") +
+  xlim(c(0, 4)) +
+  theme_void() +
+  labs(
+    title = "Interaction status of companies with your personal info",
+    subtitle = paste0(
+      "Out of ",
+      total_with_info,
+      " companies that have your personal info"
+    ),
+    fill = NULL
+  ) +
+  theme(
+    plot.title = element_text(
+      hjust = 0.5,
+      face = "bold",
+      color = "#4B0082",
+      size = 16
+    ),
+    plot.subtitle = element_text(
+      hjust = 0.5,
+      color = "#333333",
+      size = 12
+    ),
+    legend.position = "bottom"
+  ) +
+  
+  annotate(
+    "text",
+    x = 0,
+    y = 0,
+    label = paste0(round(interacted_pct), "%\nInteracted"),
+    color = "#377EB8",
+    size = 6,
+    fontface = "bold",
+    hjust = 0.5
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Interacted" = "#377EB8",
+      "Not interacted" =  "#E41A1C"
+    ),
+    labels = c(
+      paste0(
+        "Interacted: ",
+        interacted_count,
+        " (",
+        round(interacted_pct, 1),
+        "%)"
+      ),
+      paste0(
+        "Not interacted: ",
+        not_interacted_count,
+        " (",
+        round(not_interacted_pct, 1),
+        "%)"
+      )
+    )
+  )
+
+# saving the plot to be used for creating the dashboard
+ggsave(
+  "plot_interaction_personal.png",
+  plot = p4,
+  width = 6,
+  height = 4
+)
+
+
+
 
 
 
