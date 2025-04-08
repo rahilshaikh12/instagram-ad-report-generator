@@ -17,3 +17,13 @@ colnames(ad_data) <- c("company",
                        "interacted_with_before",
                        "visited_store")
 
+# converting columns to Boolean type 
+
+ad_data <- mutate(
+  ad_data,
+  has_personal_info = as.logical(has_personal_info),
+  interacted_with_before = as.logical(interacted_with_before),
+  visited_store = as.logical(visited_store)
+)
+
+
