@@ -165,6 +165,36 @@ count_not_visited <- summary_data_visited$count[summary_data_visited$visited_sto
 # Calculate total count
 total_count_visited <- sum(summary_data_visited$count)
 
+# third graph: number of companies user visited in-person
+p3 <- ggplot(summary_data_visited,
+             aes(
+               ymax = ymax,
+               ymin = ymin,
+               xmax = 4,
+               xmin = 3,
+               fill = visited_store
+             )) +
+  geom_rect() +
+  coord_polar(theta = "y") +
+  xlim(c(1, 4)) +
+  theme_void() +
+  labs(
+    title = paste0(
+      "Advertisers whose physical store you've visited (Total: ",
+      total_count_visited,
+      ")"
+    ),
+    fill = "Category"
+  ) +
+  theme(plot.title = element_text(hjust = 0, color = "#4B0082")) +
+  scale_fill_manual(
+    values = c("TRUE" = "#377EB8", "FALSE" = "#E41A1C"),
+    labels = c(
+      paste0("Not visited: ", count_not_visited),
+      paste0("Visited: ", count_visited)
+    )
+  )
+
 
 
 
