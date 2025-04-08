@@ -114,9 +114,8 @@ make clean
 
 Here are a few example insights the dashboard revealed using my own Instagram data:
 
-- **Over 200 companies** had access to my personal information, despite only interacting with a small fraction of them directly.
-- **70% of advertisers** who had my data had no recorded engagement — meaning they may have received my info through data sharing or partnerships.
-- **Some companies** appeared across multiple categories (e.g., accessed my data and were visited physically), suggesting stronger ad targeting relationships.
+- **3298 companies** had access to my personal information, despite only interacting with a small fraction of them directly.
+- **88.1% of advertisers** who had my data had no recorded engagement — meaning they may have received my info through data sharing or partnerships.
 - **Donut charts** helped visualize the imbalance between data access and actual user interaction.
 - **UpSet plots** revealed overlaps between advertisers with data access, direct interaction, and store visits — surfacing interesting clusters.
 
