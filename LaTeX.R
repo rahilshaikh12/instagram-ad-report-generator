@@ -27,6 +27,12 @@ latex_code <- "
 \\rhead{\\textcolor{gray}{Data Analysis}}
 \\cfoot{\\textcolor{gray}{\\thepage}}
 
+% Customize section titles
+\\titleformat{\\section}
+  {\\color{deepindigo}\\normalfont\\Large\\bfseries}{\\thesection}{1em}{}
+\\titleformat{\\subsection}
+  {\\color{blue}\\normalfont\\large\\bfseries}{\\thesubsection}{1em}{}
+
 
 
 "
