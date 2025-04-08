@@ -44,7 +44,7 @@ count_no_access <- summary_data_personal_info$count[summary_data_personal_info$h
 # total count
 total_count <- sum(summary_data_personal_info$count)
 
-# first graph: companies with access to info vs no access
+# first graph: number of companies with access to info vs no access
 
 p1 <- ggplot(
   summary_data_personal_info,
@@ -86,7 +86,6 @@ ggsave(
 )
 
 # creating a summary data frame for the ggplot (for companies interacted with before)
-
 summary_data_interaction <- ad_data %>%
   group_by(interacted_with_before) %>%
   summarize(count = n(), .groups = 'drop') %>%
@@ -99,6 +98,44 @@ summary_data_interaction <- ad_data %>%
     midpoint = (ymin + ymax) / 2
   )
 
+# Extract counts for the legend
+count_interacted <- summary_data_interaction$count[summary_data_interaction$interacted_with_before == TRUE]
+count_not_interacted <- summary_data_interaction$count[summary_data_interaction$interacted_with_before == FALSE]
+
+# Calculate total count
+total_count_interaction <- sum(summary_data_interaction$count)
+
+# second graph: number of companies interacted with before vs not interacted
+p2 <- ggplot(
+  summary_data_interaction,
+  aes(
+    ymax = ymax,
+    ymin = ymin,
+    xmax = 4,
+    xmin = 3,
+    fill = interacted_with_before
+  )
+) +
+  geom_rect() +
+  coord_polar(theta = "y") +
+  xlim(c(1, 4)) +
+  theme_void() +
+  labs(
+    title = paste0(
+      "Advertisers you've interacted with before (Total: ",
+      total_count_interaction,
+      ")"
+    ),
+    fill = "Category"
+  ) +
+  theme(plot.title = element_text(hjust = 0, color = "#4B0082")) + # Same deep indigo/purple as other plot
+  scale_fill_manual(
+    values = c("FALSE" = "#E41A1C", "TRUE" = "#377EB8"),
+    labels = c(
+      paste0("Not interacted: ", count_not_interacted),
+      paste0("Interacted: ", count_interacted)
+    )
+  )
 
 
 
