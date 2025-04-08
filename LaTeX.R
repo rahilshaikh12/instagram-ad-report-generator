@@ -59,6 +59,15 @@ This graph represents the number of advertisers with whom you have directly inte
     \\caption{Advertisers you've interacted with before.}
 \\end{figure}
 
+\\section*{Store Visits}
+This section provides insights into your offline engagement with advertisers. The donut chart here distinguishes between advertisers whose physical stores you have visited and those you have not, helping you visualize your real-world interactions.
+
+\\begin{figure}[H]
+    \\centering
+    \\includegraphics[width=0.8\\textwidth]{plot_visited.png}
+    \\caption{Advertisers whose physical store you've visited.}
+\\end{figure}
+
 
 
 
