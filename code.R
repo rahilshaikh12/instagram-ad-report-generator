@@ -88,7 +88,7 @@ ggsave(
 # creating a summary data frame for the ggplot (for companies interacted with before)
 summary_data_interaction <- ad_data %>%
   group_by(interacted_with_before) %>%
-  summarize(count = n(), .groups = 'drop') %>%
+  summarize(count = n(), .groups = "drop") %>%
   complete(interacted_with_before = c(TRUE, FALSE), fill = list(count = 0)) %>%
   mutate(
     Percentage = count / sum(count) * 100,
@@ -136,6 +136,14 @@ p2 <- ggplot(
       paste0("Interacted: ", count_interacted)
     )
   )
+
+# saving the plot to be used for creating the dashboard
+ggsave(
+  "plot_interaction.png",
+  plot = p2,
+  width = 6,
+  height = 4
+)
 
 
 
