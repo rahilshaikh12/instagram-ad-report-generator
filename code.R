@@ -10,13 +10,13 @@ ad_data <- do.call(rbind, lapply(ad_data, function(data_list) {
   data.frame(t(unlist(data_list)), stringsAsFactors = FALSE)
 }))
 
-# changing column names for better readability 
+# changing column names for better readability
 colnames(ad_data) <- c("company",
                        "has_personal_info",
                        "interacted_with_before",
                        "visited_store")
 
-# converting columns to Boolean type 
+# converting columns to Boolean type
 ad_data <- mutate(
   ad_data,
   has_personal_info = as.logical(has_personal_info),
@@ -28,7 +28,8 @@ ad_data <- mutate(
 summary_data_personal_info <- ad_data %>%
   group_by(has_personal_info) %>%
   summarize(count = n(), .groups = "drop") %>%
-  complete(has_personal_info = c(TRUE, FALSE), fill = list(count = 0)) %>%
+  complete(has_personal_info = c(TRUE, FALSE),
+           fill = list(count = 0)) %>%
   mutate(
     Percentage = count / sum(count) * 100,
     fraction = count / sum(count),
@@ -89,7 +90,8 @@ ggsave(
 summary_data_interaction <- ad_data %>%
   group_by(interacted_with_before) %>%
   summarize(count = n(), .groups = "drop") %>%
-  complete(interacted_with_before = c(TRUE, FALSE), fill = list(count = 0)) %>%
+  complete(interacted_with_before = c(TRUE, FALSE),
+           fill = list(count = 0)) %>%
   mutate(
     Percentage = count / sum(count) * 100,
     fraction = count / sum(count),
@@ -149,7 +151,8 @@ ggsave(
 summary_data_visited <- ad_data %>%
   group_by(visited_store) %>%
   summarize(count = n(), .groups = "drop") %>%
-  complete(visited_store = c(TRUE, FALSE), fill = list(count = 0)) %>%
+  complete(visited_store = c(TRUE, FALSE),
+           fill = list(count = 0)) %>%
   mutate(
     Percentage = count / sum(count) * 100,
     fraction = count / sum(count),
@@ -209,7 +212,8 @@ interaction_of_personal_info <- ad_data %>%
   filter(has_personal_info == TRUE) %>%
   group_by(interacted_with_before) %>%
   summarize(count = n(), .groups = "drop") %>%
-  complete(interacted_with_before = c(TRUE, FALSE), fill = list(count = 0)) %>%
+  complete(interacted_with_before = c(TRUE, FALSE),
+           fill = list(count = 0)) %>%
   mutate(
     percentage = count / sum(count) * 100,
     label = ifelse(interacted_with_before, "Interacted", "Not interacted"),
@@ -230,7 +234,7 @@ total_with_info <- sum(interaction_of_personal_info$count)
 interacted_pct <- interacted_count / total_with_info * 100
 not_interacted_pct <- not_interacted_count / total_with_info * 100
 
-# graph 4: no. of companies with personal info vs how many of them we 
+# graph 4: no. of companies with personal info vs how many of them we
 # interacted with before
 p4 <- ggplot(interaction_of_personal_info,
              aes(
@@ -308,22 +312,3 @@ ggsave(
   width = 6,
   height = 4
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
