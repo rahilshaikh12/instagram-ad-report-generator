@@ -219,6 +219,18 @@ interaction_of_personal_info <- ad_data %>%
     midpoint = (ymin + ymax) / 2
   )
 
+# Extract counts for the legend
+interacted_count <- interaction_of_personal_info$count[interaction_of_personal_info$interacted_with_before == TRUE]
+not_interacted_count <- interaction_of_personal_info$count[interaction_of_personal_info$interacted_with_before == FALSE]
+
+# total count
+total_with_info <- sum(interaction_of_personal_info$count)
+
+# percentage calculation
+interacted_pct <- interacted_count / total_with_info * 100
+not_interacted_pct <- not_interacted_count / total_with_info * 100
+
+
 
 
 
