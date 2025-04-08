@@ -33,6 +33,25 @@ latex_code <- "
 \\titleformat{\\subsection}
   {\\color{blue}\\normalfont\\large\\bfseries}{\\thesubsection}{1em}{}
 
+\\begin{document}
+
+\\begin{center}
+    \\vspace*{0.5cm}
+    {\\LARGE \\textbf{Advertiser Dashboard}}\\\\[0.5cm]
+    {\\large A Visual Overview of Your Advertiser Data}\\\\[1cm]
+\\end{center}
+
+\\section*{Personal Information Access}
+This section presents a donut chart that shows the proportion of advertisers that have access to your personal information versus those that do not. The graph segments the data into two categories, allowing you to quickly understand how many advertisers have (or do not have) direct access to your data.
+
+\\begin{figure}[H]
+    \\centering
+    \\includegraphics[width=0.8\\textwidth]{plot_personal_info.png}
+    \\caption{Advertisers with access to your personal information.}
+\\end{figure}
+
+
+
 
 
 "
