@@ -68,8 +68,16 @@ This section provides insights into your offline engagement with advertisers. Th
     \\caption{Advertisers whose physical store you've visited.}
 \\end{figure}
 
+\\section*{Interaction Among Companies with Personal Info}
+This final graph examines the interaction levels among companies that have your personal information. In this context, \"interaction\" refers to whether you have directly engaged with a company---such as visiting their website or making a purchase. If the level of direct interaction is low, yet many companies have access to your personal data, it could indicate that your data is being widely shared among advertisers. This might suggest that even without your direct engagement, companies are aggregating and circulating your data extensively, reflecting a broad network of data sharing that may have implications for your privacy and targeted advertising practices.
 
+\\begin{figure}[H]
+    \\centering
+    \\includegraphics[width=0.8\\textwidth]{plot_interaction_personal.png}
+    \\caption{Interaction status of companies with your personal information.}
+\\end{figure}
 
-
-
+\\end{document}
 "
+# Write the LaTeX code to dashboard.tex
+writeLines(latex_code, "dashboard.tex")
