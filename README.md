@@ -121,14 +121,14 @@ Here are a few example insights the dashboard revealed using my own Instagram da
 
 > These patterns raised questions about how widely user data is circulated and how little control or awareness users may have over it. The goal of this project is to bring that to light in a clear, visual way.
 
-### 📊 Sample Visuals
+### Sample Visuals
 
 **1. Advertisers with Access to Personal Information**  
-![Donut Chart – Access to Personal Info](https://imgur.com/8ZuYASL)
+![Donut Chart – Access to Personal Info](https://imgur.com/8ZuYASL.png)
 
-**2. Advertisers You’ve Interacted With**
-![Bar Chart – Interaction History](images/interaction_chart_placeholder.png)
+**2. Advertisers You’ve Interacted With and Advertisers Visited in-person**
+![Dount Chart – Interaction History](https://imgur.com/qb1JJ5N.png)
 
 **3. Overlap of Advertisers Across Categories (UpSet Plot)**
-![UpSet Plot – Overlapping Ad Categories](images/upset_plot_placeholder.png)
+![UpSet Plot – Overlapping Ad Categories](https://imgur.com/GrnDNvw.png)
 
