@@ -26,4 +26,19 @@ ad_data <- mutate(
   visited_store = as.logical(visited_store)
 )
 
+# creating a summary data frame for the ggplot
+
+summary_data_personal_info <- ad_data %>%
+  group_by(has_personal_info) %>%
+  summarize(count = n(), .groups = "drop") %>%
+  complete(has_personal_info = c(TRUE, FALSE), fill = list(count = 0)) %>%
+  mutate(
+    Percentage = count / sum(count) * 100,
+    fraction = count / sum(count),
+    ymax = cumsum(fraction),
+    ymin = c(0, head(ymax, n = -1)),
+    midpoint = (ymin + ymax) / 2
+  )
+
+
 
