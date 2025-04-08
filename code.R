@@ -195,6 +195,31 @@ p3 <- ggplot(summary_data_visited,
     )
   )
 
+# saving the plot to be used for creating the dashboard
+ggsave(
+  "plot_visited.png",
+  plot = p3,
+  width = 6,
+  height = 4
+)
+
+# creating a data frame for last graph ( no. of companies with personal info vs
+# how many of them we interacted with before)
+interaction_of_personal_info <- ad_data %>%
+  filter(has_personal_info == TRUE) %>%
+  group_by(interacted_with_before) %>%
+  summarize(count = n(), .groups = "drop") %>%
+  complete(interacted_with_before = c(TRUE, FALSE), fill = list(count = 0)) %>%
+  mutate(
+    percentage = count / sum(count) * 100,
+    label = ifelse(interacted_with_before, "Interacted", "Not interacted"),
+    fraction = count / sum(count),
+    ymax = cumsum(fraction),
+    ymin = c(0, head(ymax, n = -1)),
+    midpoint = (ymin + ymax) / 2
+  )
+
+
 
 
 
