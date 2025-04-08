@@ -145,6 +145,29 @@ ggsave(
   height = 4
 )
 
+# creating a summary data frame for the ggplot (for companies user visited in-person)
+summary_data_visited <- ad_data %>%
+  group_by(visited_store) %>%
+  summarize(count = n(), .groups = "drop") %>%
+  complete(visited_store = c(TRUE, FALSE), fill = list(count = 0)) %>%
+  mutate(
+    Percentage = count / sum(count) * 100,
+    fraction = count / sum(count),
+    ymax = cumsum(fraction),
+    ymin = c(0, head(ymax, n = -1)),
+    midpoint = (ymin + ymax) / 2
+  )
+
+# Extract counts for the legend
+count_visited <- summary_data_visited$count[summary_data_visited$visited_store == TRUE]
+count_not_visited <- summary_data_visited$count[summary_data_visited$visited_store == FALSE]
+
+# Calculate total count
+total_count_visited <- sum(summary_data_visited$count)
+
+
+
+
 
 
 
