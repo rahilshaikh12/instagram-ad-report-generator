@@ -11,14 +11,12 @@ ad_data <- do.call(rbind, lapply(ad_data, function(data_list) {
 }))
 
 # changing column names for better readability 
-
 colnames(ad_data) <- c("company",
                        "has_personal_info",
                        "interacted_with_before",
                        "visited_store")
 
 # converting columns to Boolean type 
-
 ad_data <- mutate(
   ad_data,
   has_personal_info = as.logical(has_personal_info),
@@ -27,7 +25,6 @@ ad_data <- mutate(
 )
 
 # creating a summary data frame for the ggplot
-
 summary_data_personal_info <- ad_data %>%
   group_by(has_personal_info) %>%
   summarize(count = n(), .groups = "drop") %>%
@@ -39,6 +36,11 @@ summary_data_personal_info <- ad_data %>%
     ymin = c(0, head(ymax, n = -1)),
     midpoint = (ymin + ymax) / 2
   )
+
+# total count where companies have access to personal info
+count_access <- summary_data_personal_info$count[summary_data_personal_info$has_personal_info == TRUE]
+count_no_access <- summary_data_personal_info$count[summary_data_personal_info$has_personal_info == FALSE]
+
 
 
 
