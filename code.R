@@ -41,6 +41,46 @@ summary_data_personal_info <- ad_data %>%
 count_access <- summary_data_personal_info$count[summary_data_personal_info$has_personal_info == TRUE]
 count_no_access <- summary_data_personal_info$count[summary_data_personal_info$has_personal_info == FALSE]
 
+# total count
+total_count <- sum(summary_data_personal_info$count)
+
+# first graph: companies with access to info vs no access
+
+p1 <- ggplot(
+  summary_data_personal_info,
+  aes(
+    ymax = ymax,
+    ymin = ymin,
+    xmax = 4,
+    xmin = 3,
+    fill = has_personal_info
+  )
+) +
+  geom_rect() +
+  coord_polar(theta = "y") +
+  xlim(c(1, 4)) +
+  theme_void() +
+  labs(
+    title = paste0(
+      "Advertisers with access to your personal information (Total: ",
+      total_count,
+      ")"
+    ),
+    fill = "Category"
+  ) +
+  theme(plot.title = element_text(hjust = 0, color = "#4B0082")) +  # Deep indigo/purple
+  scale_fill_manual(
+    values = c("FALSE" = "#377EB8", "TRUE" = "#E41A1C"),
+    labels = c(
+      paste0("No access: ", count_no_access),
+      paste0("Access to information: ", count_access)
+    )
+  )
+
+
+
+
+
 
 
 
