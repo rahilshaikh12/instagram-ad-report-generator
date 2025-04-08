@@ -77,6 +77,33 @@ p1 <- ggplot(
     )
   )
 
+# saving the plot to be used for creating the dashboard
+ggsave(
+  "plot_personal_info.png",
+  plot = p1,
+  width = 6,
+  height = 4
+)
+
+# creating a summary data frame for the ggplot (for companies interacted with before)
+
+summary_data_interaction <- ad_data %>%
+  group_by(interacted_with_before) %>%
+  summarize(count = n(), .groups = 'drop') %>%
+  complete(interacted_with_before = c(TRUE, FALSE), fill = list(count = 0)) %>%
+  mutate(
+    Percentage = count / sum(count) * 100,
+    fraction = count / sum(count),
+    ymax = cumsum(fraction),
+    ymin = c(0, head(ymax, n = -1)),
+    midpoint = (ymin + ymax) / 2
+  )
+
+
+
+
+
+
 
 
 
